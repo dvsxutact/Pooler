@@ -1,0 +1,14 @@
+
+Pooler/bin/
+
+.vs/
+
+Pooler/obj/
+
+Pooler.Domain/bin/
+
+Pooler.Domain/obj/
+
+Pooler.Persistence/bin/
+
+Pooler.Persistence/obj/
