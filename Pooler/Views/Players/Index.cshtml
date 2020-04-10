@@ -1,0 +1,20 @@
+﻿@model ManagePlayersViewModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<div>
+    @Html.ActionLink("New Player", "Create", "Players", new object { }, new { @class = "btn btn-success" })
+</div>
+<div>
+    @Html.LabelFor(m => m.SelectedPlayerId, "Select Player")
+    @Html.DropDownListFor(m => m.SelectedPlayerId, Model.PlayerItems, "--- Select Player ---", new { onchange = @"form.submit();"})
+</div>
+<div>
+    
+</div>
+
+

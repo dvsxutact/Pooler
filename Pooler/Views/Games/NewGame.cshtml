@@ -1,0 +1,105 @@
+﻿@model Pooler.Models.CreatePoolGameModel
+
+@{
+    ViewData["Title"] = "NewGame";
+}
+
+<h1>NewGame</h1>
+
+<h4>PoolGame</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="NewGame">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            @*<div class="form-group">
+            <label asp-for="Id" class="control-label"></label>
+            <input asp-for="Id" class="form-control" />
+            <span asp-validation-for="Id" class="text-danger"></span>
+        </div>*@
+
+            <div class="form-group">
+                <label asp-for="poolGame.PlayerOne" class="control-label"></label>
+                @Html.DropDownListFor(m => m.poolGame.PlayerOne.Id, Model.PlayerItems, "-- Select Player --", new { @class = "form-control" })
+                @*<input asp-for="PlayerOne" class="form-control" />*@
+            </div>
+
+            <div class="form-group">
+                <label asp-for="poolGame.PlayerTwo" class="control-label"></label>
+                @Html.DropDownListFor(m => m.poolGame.PlayerTwo.Id, Model.PlayerItems, "-- Select Player --", new { @class = "form-control" })
+                @*<input asp-for="poolGame.PlayerOne" class="form-control" />*@
+            </div>
+
+            <div class="form-group">
+                <label asp-for="poolGame.gameDetails.gameType" class="control-label"></label>
+                @Html.DropDownListFor(m => m.poolGame.gameDetails.gameType, Html.GetEnumSelectList<Pooler.Domain.Enums.GameType>(),
+               "Select Game Type",
+               new { @class = "form-control" })
+            </div>
+            <div class="form-group">
+                <label asp-for="poolGame.gameDetails.InningCount" class="control-label"></label>
+                <input asp-for="poolGame.gameDetails.InningCount" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="poolGame.gameDetails.P1_Defensive" class="control-label"></label>
+                <input asp-for="poolGame.gameDetails.P1_Defensive" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="poolGame.gameDetails.P2_Defensive" class="control-label"></label>
+                <input asp-for="poolGame.gameDetails.P2_Defensive" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="poolGame.gameDetails.P1_BNR" class="control-label"></label>
+                <input asp-for="poolGame.gameDetails.P1_BNR" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="poolGame.gameDetails.P2_BNR" class="control-label"></label>
+                <input asp-for="poolGame.gameDetails.P2_BNR" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="poolGame.gameDetails.P1_WOS" class="control-label"></label>
+                <input asp-for="poolGame.gameDetails.P1_WOS" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="poolGame.gameDetails.P2_WOS" class="control-label"></label>
+                <input asp-for="poolGame.gameDetails.P2_WOS" class="form-control" />
+            </div>
+
+            <p>
+                <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                    Game Details
+                </a>
+            </p>
+            <div class="collapse" id="collapseExample">
+                <div class="card card-body">
+
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="poolGame.gameStart" class="control-label"></label>
+                <input asp-for="poolGame.gameStart" class="form-control" />
+                <span asp-validation-for="poolGame.gameStart" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="poolGame.gameEnd" class="control-label"></label>
+                <input asp-for="poolGame.gameEnd" class="form-control" />
+                <span asp-validation-for="poolGame.gameEnd" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="poolGame.Winner" class="control-label"></label>
+                @Html.DropDownListFor(m => m.poolGame.Winner.Id, Model.PlayerItems, "-- Select Player --", new { @class = "form-control" })
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
