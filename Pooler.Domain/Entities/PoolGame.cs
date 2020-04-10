@@ -19,25 +19,28 @@ namespace Pooler.Domain.Entities
         public int Id { get; set; }
 
         [Required]
+        [Display(Name = "Breaking Player")]
         public Player PlayerOne { get; set; }
 
         [Required]
+        [Display(Name = "Player Two")]
         public Player PlayerTwo { get; set; }
 
         [Required]
         [DataType(DataType.DateTime)]
-        [DisplayFormat(DataFormatString = "{0:MM-dd-yyyy}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:MM-dd-yyyy hh:MM tt}", ApplyFormatInEditMode = true)]
         [Display(Name = "Game Start Time")]
         public DateTime gameStart { get; set; }
 
         [Required]
         [DataType(DataType.DateTime)]
-        [DisplayFormat(DataFormatString = "{0:MM-dd-yyyy}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:MM-dd-yyyy hh:MM tt}", ApplyFormatInEditMode = true)]
         [Display(Name = "Game End Time")]
         public DateTime gameEnd { get; set; }
 
         public GameDetails gameDetails { get; set; }
 
+        [Display(Name = "Winner")]
         public Player Winner { get; set; }
     }
 }

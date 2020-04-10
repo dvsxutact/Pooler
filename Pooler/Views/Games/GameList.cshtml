@@ -1,0 +1,60 @@
+﻿@model IEnumerable<Pooler.Domain.Entities.PoolGame>
+
+@{
+    ViewData["Title"] = "GameList";
+}
+
+<h1>GameList</h1>
+
+<p>
+    <a asp-action="NewGame">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.PlayerOne.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PlayerTwo.Name)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.gameStart)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.gameEnd)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Winner.Name)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.PlayerOne.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PlayerTwo.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.gameStart)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.gameEnd)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Winner.Name)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

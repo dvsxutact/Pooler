@@ -4,37 +4,53 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Pooler.Domain.Entities;
 using Pooler.Models;
+using Pooler.Persistence;
 
 namespace Pooler.Controllers
 {
     public class GamesController : Controller
     {
+        private readonly PoolerContext _dbContext;
+
+        public GamesController(PoolerContext dbContext)
+        {
+            _dbContext = dbContext;
+        }
+
         // GET: Games
         public ActionResult Index()
         {
             return View();
         }
 
+        // GET: Games/GamesList
+        public async Task<ActionResult> GameList()
+        {
+            var data = _dbContext.PoolGames
+                .Include(b => b.PlayerOne)
+                .Include(p2 => p2.PlayerTwo)
+                .Include(w => w.Winner)
+                .ToList();
+
+            return View(data);
+        }
+
+
         // GET: Games/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            return View(_dbContext.PoolGames.Find(id));
         }
 
         // GET: Games/Create
         public ActionResult NewGame()
         {
-            var allplayers = new List<Player>();
-            allplayers.Add(new Player { Name = "Brad Davis", AccountNumber = "03189", Active = true, Email = "dvsxutact@gmail.com", Id = 1 });
-            allplayers.Add(new Player { Name = "Chad Woods", AccountNumber = "03139", Active = true, Email = "Cw@gmail.com", Id = 2 });
-            allplayers.Add(new Player { Name = "Gloria Woods", AccountNumber = "03529", Active = true, Email = "gw@gmail.com", Id = 3 });
-            allplayers.Add(new Player { Name = "Sarah Davis", AccountNumber = "12459", Active = true, Email = "sd@gmail.com", Id = 4 });
-
-            CreatePoolGameModel mpvm = new CreatePoolGameModel
+            var mpvm = new CreatePoolGameModel
             {
-                AllPlayers = allplayers
+                AllPlayers = _dbContext.Players.ToList()
             };
 
             return View(mpvm);
@@ -43,23 +59,20 @@ namespace Pooler.Controllers
         // POST: Games/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult NewGame([FromForm]CreatePoolGameModel collection) //IFormCollection collection)
+        public async Task<ActionResult> NewGame([FromForm]CreatePoolGameModel collection) //IFormCollection collection)
         {
             try
             {
                 
                 var postObj = collection.poolGame;
+                postObj.PlayerOne = _dbContext.Players.Find(collection.poolGame.PlayerOne.Id);
+                postObj.PlayerTwo = _dbContext.Players.Find(collection.poolGame.PlayerTwo.Id);
+                postObj.Winner = _dbContext.Players.Find(collection.poolGame.Winner.Id);
 
-                //var obj = collection["gameDetails.PlayerOne"];
+                _dbContext.PoolGames.Add(postObj);
+                await _dbContext.SaveChangesAsync();
 
-                //var tryGetResult = collection.TryGetValue("poolGame.PlayerOne", out var player);
-
-                //var gameObj = new PoolGame
-                //{
-                //    PlayerOne = collection["gameDetails.PlayerOne"];  // ["gameDetails.PlayerOne"];
-                //}
-
-                return View();
+                return RedirectToAction(nameof(NewGame));
             }
             catch
             {
@@ -76,11 +89,10 @@ namespace Pooler.Controllers
         // POST: Games/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit(int id, [FromForm]PoolGame collection)
         {
             try
             {
-                // TODO: Add update logic here
 
                 return RedirectToAction(nameof(Index));
             }
