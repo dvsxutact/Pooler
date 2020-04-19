@@ -1,0 +1,62 @@
+﻿@model Pooler.Domain.Entities.PoolGame
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+
+<div>
+    <h4>Game</h4>
+
+    <div class="row justify-content-md-center">
+        <div class="col col-sm-2">
+            <h6>@Html.DisplayFor(m => m.PlayerOne.Name)</h6>
+        </div>
+        <div class="col-md-auto">
+            Verses
+        </div>
+        <div class="col col-sm-2">
+            <h6>@Html.DisplayFor(m => m.PlayerTwo.Name)</h6>
+        </div>
+    </div>
+
+    <hr />
+
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(m => m.gameDetails.InningCount)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.gameDetails.InningCount)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.gameStart)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.gameStart)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.gameEnd)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.gameEnd)
+        </dd>
+    </dl>
+
+    <div class="row justify-content-md-center border-dark">
+        <div class="col col-md-2">
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(m => m.gameDetails.P1_Defensive)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(m => m.gameDetails.P1_Defensive)
+            </dd>
+            
+        </div>
+
+    </div>
+</div>
+    <div>
+        @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+        <a asp-action="Index">Back to List</a>
+    </div>
