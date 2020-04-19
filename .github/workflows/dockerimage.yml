@@ -9,9 +9,11 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      build_time: $(date +%s)
     steps:
     - uses: actions/checkout@v2
     - name: Build the Docker image
-      run: docker build . --file Pooler/Dockerfile --tag registry.bdlabs.org/pooler/pooler$(date +%s)
+      run: docker build . --file Pooler/Dockerfile --tag registry.bdlabs.org/pooler/pooler$build_time
     - name: Push the docker Image
-      run: docker push registry.bdlabs.org/pooler/pooler
+      run: docker push registry.bdlabs.org/pooler/pooler$build_time
