@@ -18,8 +18,8 @@ jobs:
       with:
         dotnet-version: 3.1.101
     - name: Install dependencies
-      run: dotnet restore pooler.sln
+      run: dotnet restore Pooler.sln
     - name: Build
-      run: dotnet build pooler.sln --configuration Release --no-restore
+      run: dotnet build Pooler.sln --configuration Release --no-restore
     - name: Test
-      run: dotnet test --no-restore --verbosity normal
+      run: dotnet test Pooler.sln --no-restore --verbosity normal
