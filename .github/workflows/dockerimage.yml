@@ -14,6 +14,6 @@ jobs:
     - name: Build the Docker image
       run: docker build . --file Pooler/Dockerfile --tag pooler$(date +%s)
     - name: Tag the docker Image
-      run: docker tag pooler$(date +%s) registry.bdlabs.org/Pooler/pooler
+      run: docker tag pooler$(date +%s) registry.bdlabs.org/pooler/pooler
     - name: Push the docker Image
-      run: docker push registry.bdlabs.org/Pooler/pooler
+      run: docker push registry.bdlabs.org/pooler/pooler
