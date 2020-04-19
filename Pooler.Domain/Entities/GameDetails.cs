@@ -15,22 +15,22 @@ namespace Pooler.Domain.Entities
         [Display(Name = "Total Innings")]
         public int InningCount { get; set; }
 
-        [Display(Name = "Player 1 Defensive")]
+        [Display(Name = "Defensive")]
         public int P1_Defensive { get; set; }
 
-        [Display(Name = "Player 2 Defensive")]
+        [Display(Name = "Defensive")]
         public int P2_Defensive { get; set; }
 
-        [Display(Name = "Player 1 Break & Run")]
+        [Display(Name = "Break & Run")]
         public int P1_BNR { get; set; }
 
-        [Display(Name = "Player 2 Break & Run")]
+        [Display(Name = "Break & Run")]
         public int P2_BNR { get; set; }
 
-        [Display(Name = "Player 1 Win on Snap")]
+        [Display(Name = "Win on Break")]
         public int P1_WOS { get; set; }
 
-        [Display(Name = "Player 2 Win on Snap")]
+        [Display(Name = "Win on Break")]
         public int P2_WOS { get; set; }
     }
 }
