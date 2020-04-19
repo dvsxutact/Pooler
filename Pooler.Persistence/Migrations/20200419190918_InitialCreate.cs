@@ -36,8 +36,8 @@ namespace Pooler.Persistence.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     Name = table.Column<string>(maxLength: 150, nullable: false),
-                    Email = table.Column<string>(maxLength: 200, nullable: true),
-                    AccountNumber = table.Column<string>(nullable: true),
+                    Email = table.Column<string>(maxLength: 200, nullable: false),
+                    AccountNumber = table.Column<string>(maxLength: 10, nullable: false),
                     Active = table.Column<bool>(nullable: false)
                 },
                 constraints: table =>
@@ -86,6 +86,12 @@ namespace Pooler.Persistence.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Players_AccountNumber",
+                table: "Players",
+                column: "AccountNumber",
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_PoolGames_PlayerOneId",

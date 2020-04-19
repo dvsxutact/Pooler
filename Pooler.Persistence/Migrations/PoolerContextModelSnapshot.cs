@@ -62,12 +62,15 @@ namespace Pooler.Persistence.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("AccountNumber")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+                        .IsRequired()
+                        .HasColumnType("varchar(10) CHARACTER SET utf8mb4")
+                        .HasMaxLength(10);
 
                     b.Property<bool>("Active")
                         .HasColumnType("tinyint(1)");
 
                     b.Property<string>("Email")
+                        .IsRequired()
                         .HasColumnType("varchar(200) CHARACTER SET utf8mb4")
                         .HasMaxLength(200);
 
@@ -77,6 +80,9 @@ namespace Pooler.Persistence.Migrations
                         .HasMaxLength(150);
 
                     b.HasKey("Id");
+
+                    b.HasIndex("AccountNumber")
+                        .IsUnique();
 
                     b.ToTable("Players");
                 });

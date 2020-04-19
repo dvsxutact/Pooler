@@ -14,9 +14,28 @@ namespace Pooler.Persistence
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Player>().ToTable("Players");
+            modelBuilder.ApplyConfigurationsFromAssembly(typeof(PoolerContext).Assembly);
+
+            modelBuilder.Entity<Player>(player =>
+            {
+                player.Property(e => e.Name).HasMaxLength(150);
+                player.Property(e => e.Name).IsRequired();
+
+                player.Property(e => e.Email).HasMaxLength(200);
+                player.Property(e => e.Email).IsRequired();
+
+                player.HasIndex(e => e.AccountNumber).IsUnique();
+                player.Property(e => e.AccountNumber).IsRequired().HasMaxLength(10);
+            });
+
+            //    .HasIndex(p => p.AccountNumber)
+            //    .IsUnique();
+
+            //modelBuilder.Entity<Player>().ToTable("Players");
             modelBuilder.Entity<PoolGame>().ToTable("PoolGames");
             modelBuilder.Entity<GameDetails>().ToTable("GameDetails");
+
+
         }
     }
 }
