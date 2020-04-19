@@ -12,8 +12,6 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Build the Docker image
-      run: docker build . --file Pooler/Dockerfile --tag pooler$(date +%s)
-    - name: Tag the docker Image
-      run: docker tag pooler$(date +%s) registry.bdlabs.org/pooler/pooler
+      run: docker build . --file Pooler/Dockerfile --tag registry.bdlabs.org/pooler/pooler$(date +%s)
     - name: Push the docker Image
       run: docker push registry.bdlabs.org/pooler/pooler
