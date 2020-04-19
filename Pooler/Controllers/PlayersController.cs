@@ -51,6 +51,21 @@ namespace Pooler.Controllers
         {
             try
             {
+                // account number can't be blank, so if it is, that means we need
+                // to generate a new account number for this player
+                if (string.IsNullOrEmpty(collection.AccountNumber))
+                {
+                    var rnd = new Random();
+                    var generatedNumber = rnd.Next(100000, 999999);
+
+                    // check the players table to see if this number is already in-use
+                    var accountNumberUsed = _dbContext.Players.FirstOrDefault(p => p.AccountNumber.Equals(generatedNumber));
+                    if (accountNumberUsed == null)
+                    {
+                        collection.AccountNumber = generatedNumber.ToString();
+                    }
+                }
+
                 _dbContext.Players.Add(collection);
                 await _dbContext.SaveChangesAsync();
 
