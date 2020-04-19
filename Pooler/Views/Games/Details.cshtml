@@ -12,6 +12,8 @@
         </div>
     </div>
 
+    <hr/>
+
     <div class="row justify-content-md-center">
         <div class="col">
             <h6>@Html.DisplayFor(m => m.PlayerOne.Name)</h6>
@@ -28,36 +30,40 @@
 
     <div class="row">
         <div class="col">
-            <dl class="row">
-                <dt class="col">
+            <dl class="col">
+                <dt class="row">
                     @Html.DisplayNameFor(model => model.gameDetails.gameType)
                 </dt>
                 <dd class="col">
                     @Html.DisplayFor(model => model.gameDetails.gameType)
                 </dd>
-                <dt class="col">
+                <dt class="row">
                     @Html.DisplayNameFor(m => m.gameDetails.InningCount)
                 </dt>
                 <dd class="col">
                     @Html.DisplayFor(model => model.gameDetails.InningCount)
                 </dd>
-                <dt class="col">
+                <dt class="row">
+                    @Html.DisplayNameFor(model => model.Winner)
+                </dt>
+                <dd class="col">
+                    @Html.DisplayFor(model => model.Winner.Name)
+                </dd>
+            </dl>
+        </div>
+        <div class="col">
+            <dl class="col">
+                <dt class="row">
                     @Html.DisplayNameFor(model => model.gameStart)
                 </dt>
                 <dd class="col">
                     @Html.DisplayFor(model => model.gameStart)
                 </dd>
-                <dt class="col">
+                <dt class="row">
                     @Html.DisplayNameFor(model => model.gameEnd)
                 </dt>
                 <dd class="col">
                     @Html.DisplayFor(model => model.gameEnd)
-                </dd>
-                <dt class="col">
-                    @Html.DisplayNameFor(model => model.Winner)
-                </dt>
-                <dd class="col">
-                    @Html.DisplayFor(model => model.Winner.Name)
                 </dd>
             </dl>
         </div>
