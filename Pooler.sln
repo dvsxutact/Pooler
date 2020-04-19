@@ -5,9 +5,9 @@ VisualStudioVersion = 16.0.29613.14
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pooler", "Pooler\Pooler.csproj", "{AFEC126B-130D-4C95-AE49-21459DCBC5DD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pooler.Domain", "Pooler.Domain\Pooler.Domain.csproj", "{CF29FB7E-4B01-42DB-A1B0-21061B22B358}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pooler.Domain", "Pooler.Domain\Pooler.Domain.csproj", "{CF29FB7E-4B01-42DB-A1B0-21061B22B358}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pooler.Persistence", "Pooler.Persistence\Pooler.Persistence.csproj", "{7DC2DE8D-3CCB-448A-841F-C9D6EED91CD0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pooler.Persistence", "Pooler.Persistence\Pooler.Persistence.csproj", "{7DC2DE8D-3CCB-448A-841F-C9D6EED91CD0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

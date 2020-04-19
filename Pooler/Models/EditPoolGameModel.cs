@@ -4,15 +4,17 @@ using System.Collections.Generic;
 
 namespace Pooler.Models
 {
-    public class CreatePoolGameModel
+    public class EditPoolGameModel     
     {
-        public PoolGame poolGame { get; set; }
-
         public List<Player> AllPlayers { get; set; }
-        
+
+        public PoolGame PoolGame { get; set; }
+
         public IEnumerable<SelectListItem> PlayerItems
         {
-            get { if (AllPlayers != null)
+            get
+            {
+                if (AllPlayers != null)
                     return new SelectList(AllPlayers, "Id", "Name");
                 else
                     return null;

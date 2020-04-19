@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Pooler.Domain.Entities;
 using Pooler.Models;
 using Pooler.Persistence;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Pooler.Controllers
 {
@@ -29,20 +27,27 @@ namespace Pooler.Controllers
         // GET: Games/GamesList
         public async Task<ActionResult> GameList()
         {
-            var data = _dbContext.PoolGames
+            var data = await _dbContext.PoolGames
                 .Include(b => b.PlayerOne)
                 .Include(p2 => p2.PlayerTwo)
                 .Include(w => w.Winner)
-                .ToList();
+                .ToListAsync();
 
             return View(data);
         }
 
 
         // GET: Games/Details/5
-        public ActionResult Details(int id)
+        public async Task<ActionResult> Details(int id)
         {
-            return View(_dbContext.PoolGames.Find(id));
+            var gameDetails = await _dbContext.PoolGames
+                  .Include(g => g.PlayerOne)
+                  .Include(g => g.PlayerTwo)
+                  .Include(g => g.Winner)
+                  .Include(g => g.gameDetails)
+                  .FirstOrDefaultAsync(g => g.Id.Equals(id));
+
+            return View(gameDetails);
         }
 
         // GET: Games/Create
@@ -63,7 +68,7 @@ namespace Pooler.Controllers
         {
             try
             {
-                
+
                 var postObj = collection.poolGame;
                 postObj.PlayerOne = _dbContext.Players.Find(collection.poolGame.PlayerOne.Id);
                 postObj.PlayerTwo = _dbContext.Players.Find(collection.poolGame.PlayerTwo.Id);
@@ -81,9 +86,20 @@ namespace Pooler.Controllers
         }
 
         // GET: Games/Edit/5
-        public ActionResult Edit(int id)
+        public async Task<ActionResult> Edit(int id)
         {
-            return View();
+            var editMode = new EditPoolGameModel
+            {
+                AllPlayers = await _dbContext.Players.ToListAsync(),
+                PoolGame = await _dbContext.PoolGames
+                .Include(g => g.PlayerOne)
+                .Include(g => g.PlayerTwo)
+                .Include(g => g.Winner)
+                .Include(g => g.gameDetails)
+                .FirstOrDefaultAsync(g => g.Id.Equals(id))
+            };
+
+            return View(editMode);
         }
 
         // POST: Games/Edit/5

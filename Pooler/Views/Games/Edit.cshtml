@@ -1,0 +1,131 @@
+﻿@model Pooler.Models.EditPoolGameModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+@*<h1>Edit</h1>*@
+<hr />
+
+<div class="row">
+    <div class="col-sm">
+        <h6>@Html.LabelFor(m => m.PoolGame.PlayerOne, Model.PoolGame.PlayerOne.Name)</h6>
+    </div>
+    <div class="col-sm">
+        <h2>VS</h2>
+    </div>
+    <div class="col-sm">
+        <h6>@Html.LabelFor(m => m.PoolGame.PlayerTwo, Model.PoolGame.PlayerTwo.Name)</h6>
+    </div>
+</div>
+
+
+<div class="row">
+    @*<div class="col-md">
+        <div class="form-group">
+            <label asp-for="PoolGame.PlayerOne" class="control-label"></label>
+            @Html.DropDownListFor(m => m.PoolGame.PlayerOne.Id, Model.PlayerItems, "-- Select Player --", new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="col-md">
+        <div class="form-group">
+            <label asp-for="PoolGame.PlayerTwo" class="control-label"></label>
+            @Html.DropDownListFor(m => m.PoolGame.PlayerTwo.Id, Model.PlayerItems, "-- Select Player --", new { @class = "form-control" })
+        </div>
+    </div>*@
+    <div class="col-md">
+        <div class="form-group">
+            <label asp-for="PoolGame.Winner" class="control-label"></label>
+            @Html.DropDownListFor(m => m.PoolGame.Winner.Id, Model.PlayerItems, "-- Select Player --", new { @class = "form-control" })
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md">
+        <div class="form-group">
+            <label asp-for="PoolGame.gameStart" class="control-label"></label>
+            <input asp-for="PoolGame.gameStart" class="form-control" />
+            <span asp-validation-for="PoolGame.gameStart" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="col-md">
+        <div class="form-group">
+            <label asp-for="PoolGame.gameEnd" class="control-label"></label>
+            <input asp-for="PoolGame.gameEnd" class="form-control" />
+            <span asp-validation-for="PoolGame.gameEnd" class="text-danger"></span>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md">
+        <div class="form-group">
+            <label asp-for="PoolGame.gameDetails.gameType" class="control-label"></label>
+            <input asp-for="PoolGame.gameDetails.gameType" class="form-control" />
+            <span asp-validation-for="PoolGame.gameDetails.gameType" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="col-md">
+        <div class="form-group">
+            <label asp-for="PoolGame.gameDetails.InningCount" class="control-label"></label>
+            <input asp-for="PoolGame.gameDetails.InningCount" class="form-control" />
+            <span asp-validation-for="PoolGame.gameDetails.InningCount" class="text-danger"></span>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md">
+        <div class="form-group">
+            <label asp-for="PoolGame.gameDetails.P1_Defensive" class="control-label"></label>
+            <input asp-for="PoolGame.gameDetails.P1_Defensive" class="form-control" />
+            <span asp-validation-for="PoolGame.gameDetails.P1_Defensive" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="PoolGame.gameDetails.P2_Defensive" class="control-label"></label>
+            <input asp-for="PoolGame.gameDetails.P2_Defensive" class="form-control" />
+            <span asp-validation-for="PoolGame.gameDetails.P2_Defensive" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="col-md">
+        <div class="form-group">
+            <label asp-for="PoolGame.gameDetails.P1_BNR" class="control-label"></label>
+            <input asp-for="PoolGame.gameDetails.P1_BNR" class="form-control" />
+            <span asp-validation-for="PoolGame.gameDetails.P1_BNR" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="PoolGame.gameDetails.P2_BNR" class="control-label"></label>
+            <input asp-for="PoolGame.gameDetails.P2_BNR" class="form-control" />
+            <span asp-validation-for="PoolGame.gameDetails.P2_BNR" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="col-md">
+        <div class="form-group">
+            <label asp-for="PoolGame.gameDetails.P1_WOS" class="control-label"></label>
+            <input asp-for="PoolGame.gameDetails.P1_WOS" class="form-control" />
+            <span asp-validation-for="PoolGame.gameDetails.P1_WOS" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="PoolGame.gameDetails.P2_WOS" class="control-label"></label>
+            <input asp-for="PoolGame.gameDetails.P2_WOS" class="form-control" />
+            <span asp-validation-for="PoolGame.gameDetails.P2_WOS" class="text-danger"></span>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
