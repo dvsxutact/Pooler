@@ -28,10 +28,6 @@ namespace Pooler.Persistence
                 player.Property(e => e.AccountNumber).IsRequired().HasMaxLength(10);
             });
 
-            //    .HasIndex(p => p.AccountNumber)
-            //    .IsUnique();
-
-            //modelBuilder.Entity<Player>().ToTable("Players");
             modelBuilder.Entity<PoolGame>().ToTable("PoolGames");
             modelBuilder.Entity<GameDetails>().ToTable("GameDetails");
 
